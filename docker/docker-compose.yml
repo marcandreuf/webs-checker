@@ -1,0 +1,21 @@
+name: ${APP}-dev-env
+
+services:
+
+  dev_env:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    image: ${APP}-dev-env:latest
+    container_name: ${APP}-dev-container
+    user: node
+    volumes:
+      - $PWD:/home/node/app:cached
+      - ~/.Xauthority:/home/node/.Xauthority:ro
+      - /tmp/.X11-unix:/tmp/.X11-unix:ro
+    stdin_open: true
+    network_mode: host
+    environment:
+      - DISPLAY
+    tty: true
+    restart: unless-stopped

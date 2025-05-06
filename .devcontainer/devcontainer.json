@@ -1,0 +1,33 @@
+{
+    "name": "Webs checker min framework",
+    "dockerComposeFile": "../docker/docker-compose.yml",
+    "service": "dev_env",
+    "workspaceFolder": "/home/node/app",
+    "shutdownAction": "stopCompose",
+    "remoteUser": "node",
+    "containerUser": "node",
+    "initializeCommand": "echo 'Allow local connections' && xhost +",
+    "features": {
+      "ghcr.io/devcontainers/features/git:1": {}
+    },
+    "mounts": [
+      "source=${localEnv:HOME}/.gitconfig,target=/home/node/.gitconfig,type=bind,consistency=cached",
+      "source=${localEnv:HOME}/.ssh/id_ed25519,target=/home/node/.ssh/id_ed25519,type=bind,consistency=cached",
+      "source=${localEnv:HOME}/.ssh/known_hosts,target=/home/node/.ssh/known_hosts,type=bind,consistency=cached"
+    ],
+    "customizations": {
+      "vscode": {
+        "settings": {          
+          "extensions.ignoreRecommendations": false, 
+          "terminal.integrated.shell.linux": "/bin/bash"
+        },
+        "extensions": [          
+          "github.copilot",
+				  "github.copilot-chat",
+          "esbenp.prettier-vscode",
+          "redhat.vscode-yaml"
+        ]
+      }
+    }
+  }
+  
